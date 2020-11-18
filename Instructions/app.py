@@ -29,7 +29,6 @@ Base.prepare(engine, reflect=True)
 
 #Save reference(s)
 measurement = Base.classes.measurement
-
 station = Base.classes.station
 
 #create a db session object
@@ -41,7 +40,6 @@ session = Session(engine)
 app = Flask(__name__)
 
 #define  Flask Routes 
-
 @app.route("/")
 def home():
     return(
@@ -62,40 +60,43 @@ def precipitation():
 
 # Perform a query to retrieve the data and precipitation scores
     db_retrieve = session.query(measurement.date, measurement.prcp).filter(measurement.date >= year_ago).all()
-
+#Saving the list into a dictionary format for JSON
     prcptn = {date: prcp for date, prcp in db_retrieve}
     return jsonify(prcptn)
 
 @app.route("/api/v1.0/stations")
 def stations():
     sttn_result = session.query(station.station).all()
-    #A 1-D array, containing the elements of the input, is returned
+#A 1-D array, containing the elements of the input, is returned
     sttn = list(np.ravel(sttn_result))
     return jsonify(stations = sttn)
 
 @app.route("/api/v1.0/tobs")
 def temperature():
-    #straight up copied the code from jupyter notebook for data retrieve
+#straight up copied the code from jupyter notebook for data retrieve
     year_ago = dt.date(2017,8,23) - dt.timedelta(days=365)
 
-    #Most Active Station was calculated in ipynb: climate_starter
+#Most Active Station was calculated in ipynb: climate_starter
     results = session.query(measurement.tobs).filter(measurement.station =="USC00519281").\
     filter(measurement.date >= year_ago).all()
 
+#numpy ravel to return an array list
     tobs = list(np.ravel(results))
     return jsonify(Temps = tobs)
 
 @app.route("/api/v1.0/<start>")
 @app.route("/api/v1.0/<start>/<end>")
 def average(start=None,end=None):
-    #select for session.query
+#select statemnt will be used to call from the DB to get the min,avg, and max
     select = [func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs)]
 
+# if End not provide the result will be for >= start
     if not end: 
         results = session.query(*select).filter(measurement.date >= start).all()
         tobs = list(np.ravel(results))
         return jsonify(Temps = tobs)
 
+# If both start and end are provided then is query will run
     results = session.query(*select).\
         filter(measurement.date >= start).filter(measurement.date <= end).all()
     tobs = list(np.ravel(results))
