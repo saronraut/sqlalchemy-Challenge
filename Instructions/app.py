@@ -39,7 +39,7 @@ session = Session(engine)
 ##############################
 app = Flask(__name__)
 
-#define  Flask Routes 
+#Flask Routes 
 @app.route("/")
 def home():
     return(
@@ -84,13 +84,14 @@ def temperature():
     tobs = list(np.ravel(results))
     return jsonify(Temps = tobs)
 
+# Needed assistant on this apporach. The direction was very vague
 @app.route("/api/v1.0/<start>")
 @app.route("/api/v1.0/<start>/<end>")
 def average(start=None,end=None):
 #select statemnt will be used to call from the DB to get the min,avg, and max
     select = [func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs)]
 
-# if End not provide the result will be for >= start
+# if End not provided, the result will be for >= start
     if not end: 
         results = session.query(*select).filter(measurement.date >= start).all()
         tobs = list(np.ravel(results))
