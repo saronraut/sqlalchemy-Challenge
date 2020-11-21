@@ -3,11 +3,13 @@
 This assigment required me to display skills utllizing SQLAlchemy and Python to do basic climate analysis and data exploration of your climate db. 
 
 
-THE CODES ARE WRITTEN FOR THE ASSIGNMENT ARE IN /instructions:
+THE CODES WRITTEN FOR THE ASSIGNMENT ARE IN /instructions:
 
     The climate_starter.ipynb contains the SQLAlchemy. 
         - imported modules: matplotlib, numpy, pandas, datetime,
             sqlalchemy.orm
+        
+        -SQLite DB name: measurement, station
     
         - Bonus Challenge Assignment completed.
             codes were partially provided in the notebooks. 
@@ -18,6 +20,10 @@ THE CODES ARE WRITTEN FOR THE ASSIGNMENT ARE IN /instructions:
         -Flask was used to create the routes. 
         -Routes: 
             - "/" = home 
-            - "
+            - "/api/v1.0/precipitation" = precipitation
+            - "/api/v1.0/stations" = station
+            - "/api/v1.0/tobs" = temperatures
+            -"/api/v1.0/<start>"
+            -"/api/v1.0/<start>/<end>" = tmin,tavg,tmax
     
     
