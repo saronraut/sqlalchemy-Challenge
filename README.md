@@ -3,7 +3,7 @@
 This assigment required me to display skills utllizing SQLAlchemy and Python to do basic climate analysis and data exploration of your climate db. 
 
 
-THE CODES WRITTEN FOR THE ASSIGNMENT ARE IN /instructions:
+# THE CODES WRITTEN FOR THE ASSIGNMENT ARE IN /instructions:
 
     The climate_starter.ipynb contains the SQLAlchemy. 
         - imported modules: matplotlib, numpy, pandas, datetime,
@@ -26,4 +26,7 @@ THE CODES WRITTEN FOR THE ASSIGNMENT ARE IN /instructions:
             -"/api/v1.0/<start>"
             -"/api/v1.0/<start>/<end>" = tmin,tavg,tmax
     
+# Modules that needed to imported were already provided in the notebook. 
+
+
     
