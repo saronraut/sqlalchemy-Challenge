@@ -33,7 +33,7 @@ This assigment required me to display skills utllizing SQLAlchemy and Python to 
     Solutions provided by the instructor was used as reference to compile some codes for troubleshooting. 
     
 
-# SQLAlchemy Homework - Surfs Up!
+# SQLAlchemy Surfs Up!
 
 
 ![surfs-up.png](Images/surfs-up.png)
